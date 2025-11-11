@@ -1,43 +1,6 @@
 import TextInput from '../TextInput/TextInput';
 import Button from '../Button/Button';
 
-<<<<<<< HEAD
-
-function TextInputForm({inputType, HandleFormSubmit, HandlerTextInputChange, OnShowHideClickHandler}){
-    return (
-        <form onSubmit={HandleFormSubmit} >
-            <div>
-                
-                <TextInput
-                    type={inputType}
-                    label="Enter a word"
-                    placeholder="Enter a word here"
-                    onChangeHandler={HandlerTextInputChange}
-                />
-
-                <Button
-                    styleType="danger"
-                    text={inputType === "password" ? "show" : "hide"}
-                    onClickHandler={OnShowHideClickHandler}
-                />
-
-            </div>
-
-            <div>
-                <Button
-                    type="submit"
-                    styleType="primary"
-                    text="Submit"
-                />
-            </div>
-
-            
-        </form>
-    );
-}
-
-export default TextInputForm;
-=======
 function TextInputForm({
   inputType,
   HandleFormSubmit,
@@ -93,4 +56,3 @@ function TextInputForm({
 }
 
 export default TextInputForm;
->>>>>>> bddeb74 (update the ui and win loss logic also added play with friends and plaly with computer features)

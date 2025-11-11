@@ -9,15 +9,12 @@
     "lint": "eslint .",
     "preview": "vite preview"
   },
-  "dependencies": {
-<<<<<<< HEAD
-=======
-    "lucide-react": "^0.553.0",
->>>>>>> bddeb74 (update the ui and win loss logic also added play with friends and plaly with computer features)
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "react-router-dom": "^7.6.3"
-  },
+"dependencies": {
+  "lucide-react": "^0.553.0",
+  "react": "^19.1.0",
+  "react-dom": "^19.1.0",
+  "react-router-dom": "^7.6.3"
+},
   "devDependencies": {
     "@eslint/js": "^9.25.0",
     "@types/react": "^19.1.2",
