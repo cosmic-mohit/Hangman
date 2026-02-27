@@ -12,7 +12,7 @@ function TextInputForm({
   return (
     <form
       onSubmit={HandleFormSubmit}
-      className="flex flex-col  w-full"
+      className="flex flex-col w-full space-y-4"
     >
       {/* Word input with Show/Hide button inside input wrapper */}
       <div className="relative w-full">

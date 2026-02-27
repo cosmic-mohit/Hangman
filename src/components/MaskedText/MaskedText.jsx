@@ -1,19 +1,18 @@
-import getMaskedString from "./MaskingUtility";
-
-
-function MaskedText({text = "", guessedLetters = []}){
-    const maskedText = getMaskedString(text, guessedLetters);
-    return(
-        <>
-            {maskedText.map((letters , idx)=>{
-                return (
-                    <span key={idx} className="mx-4 text-red-800">
-                        {letters}
-                    </span>
-                )
-            })}
-        </>
-    )
+function MaskedText({ text = "", revealedIndices = [] }) {
+  return (
+    <>
+      {text.split("").map((char, idx) => (
+        <span
+          key={idx}
+          className="mx-3 text-2xl font-bold text-indigo-700"
+        >
+          {revealedIndices.includes(idx) || char === " "
+            ? char
+            : "_"}
+        </span>
+      ))}
+    </>
+  );
 }
 
 export default MaskedText;
