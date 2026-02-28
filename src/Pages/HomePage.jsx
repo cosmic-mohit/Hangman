@@ -11,7 +11,7 @@ function HomePage() {
   const randomItem = wordsArray[Math.floor(Math.random() * wordsArray.length)];
 
   // Navigate to PlayGame with word + hint
-  navigate("/play", { state: { word: randomItem.word, hint: randomItem.hint } });
+  navigate("/play", { state: { word: randomItem.word, hint: randomItem.hint, mode : "computer" } });
 };
 
 

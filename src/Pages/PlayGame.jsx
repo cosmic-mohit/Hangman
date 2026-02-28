@@ -12,8 +12,11 @@ function PlayGame() {
   const navigate = useNavigate();
   const { score, setScore } = useContext(ScoreContext);
 
+  const mode = state?.mode || "computer";
+
   const [revealedIndices, setRevealedIndices] = useState([]);
   const [showCelebration, setShowCelebration] = useState(false);
+  const [showFriendWin, setShowFriendWin] = useState(false);
 
   const [currentWord, setCurrentWord] = useState(
     state?.word?.toUpperCase() || ""
@@ -25,7 +28,7 @@ function PlayGame() {
 
   const MAX_STEPS = 6;
 
-  // 🎯 Load New Word
+  // 🎯 Load New Word (Computer Mode Only)
   function loadNewWord() {
     const wordsArray = db.words;
     const randomItem =
@@ -65,24 +68,32 @@ function PlayGame() {
 
     const totalLetters = currentWord.replace(/ /g, "").length;
 
-    // ✅ Win
+    // ✅ WIN
     if (
       revealedIndices.length === totalLetters &&
-      totalLetters > 0
+      totalLetters > 0 &&
+      gameStatus === "playing"
     ) {
       setScore((prev) => prev + 1);
       setShowCelebration(true);
 
       setTimeout(() => {
         setShowCelebration(false);
-        loadNewWord();
+
+        if (mode === "friend") {
+          setShowFriendWin(true);  // 👥 show friend modal
+        } else {
+          loadNewWord();           // 🖥 continue computer mode
+        }
+
       }, 1200);
     }
 
-    // ❌ Lose
-    if (step >= MAX_STEPS) {
+    // ❌ LOSE
+    if (step >= MAX_STEPS && gameStatus === "playing") {
       setGameStatus("lost");
     }
+
   }, [revealedIndices, step]);
 
   const handleRestart = () => {
@@ -97,7 +108,7 @@ function PlayGame() {
       </h2>
 
       <h1 className="text-3xl font-bold mb-6 text-gray-800">
-        🎯 Play Game
+        🎯 {mode === "friend" ? "Play with Friend" : "Play vs Computer"}
       </h1>
 
       <div className="flex flex-row items-start gap-10">
@@ -125,7 +136,7 @@ function PlayGame() {
         </div>
       </div>
 
-      {/* Lose Modal */}
+      {/* ❌ Lose Modal */}
       {gameStatus === "lost" && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
           <div className="bg-white rounded-3xl shadow-xl p-10 w-80 text-center">
@@ -143,6 +154,24 @@ function PlayGame() {
               className="mt-4 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all duration-300"
             >
               🔁 Back to Home
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* 👥 Friend Win Modal */}
+      {showFriendWin && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-3xl shadow-xl p-10 w-80 text-center">
+            <h2 className="text-3xl font-bold mb-4 text-green-600">
+              🎉 You Win!
+            </h2>
+
+            <button
+              onClick={() => navigate("/startgame")}
+              className="mt-4 px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-all duration-300"
+            >
+              🔁 Play Again
             </button>
           </div>
         </div>

@@ -7,6 +7,7 @@ function TextInputForm({
   HandlerTextInputChange,
   OnShowHideClickHandler,
   hintValue,
+  wordValue,
   HandlerHintChange
 }) {
   return (
@@ -20,6 +21,7 @@ function TextInputForm({
           type={inputType}
           label="Enter a word"
           placeholder="Enter a word here"
+          value={wordValue}
           onChangeHandler={HandlerTextInputChange}
           className="w-full pr-20" // space for button
         />

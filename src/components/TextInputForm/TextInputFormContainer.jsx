@@ -11,7 +11,7 @@ function TextInputFormContainer() {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     if (word.trim()) {
-      navigate("/play", { state: { word: word.trim(), hint: hint.trim() } });
+      navigate("/play", { state: { word: word.trim(), hint: hint.trim(), mode : "friend" } });
     }
   };
 
@@ -29,6 +29,7 @@ function TextInputFormContainer() {
       HandlerHintChange={handleHintChange} // ✅ pass to form
       OnShowHideClickHandler={toggleInputType}
       hintValue={hint} // ✅ pass current hint
+      wordValue={word} // ✅ pass current word (optional, for controlled input)
     />
   );
 }
